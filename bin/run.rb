@@ -1,3 +1,4 @@
-require_relative '../ufo.rb'
+require_relative '../lib/ufo.rb'
+require_relative '../lib/cli_functions.rb'
 
-puts $x[0]
+welcome
