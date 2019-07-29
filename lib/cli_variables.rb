@@ -1,3 +1,0 @@
-$guess = []
-
-$incorrect_guesses = []
