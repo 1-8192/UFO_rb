@@ -4,7 +4,7 @@ class Ufo_game
 
     def initialize
         @guesses_remaining = 6
-        @wrong_guesses = []
+        @incorrect_guesses = []
         @correct_guesses = []
         @secret_word = "testword"
     end
@@ -18,9 +18,19 @@ class Ufo_game
         puts $x[6 - @guesses_remaining]
     end
 
+    def print_incorrect_guesses
+        if @incorrect_guesses != [] 
+            @incorrect_guesses.each do |letter|
+                puts letter + " "
+            end
+        else  
+            puts "NONE"
+        end
+    end
+
     def print_status
         puts "Incorrect Guesses:"
-        puts "NONE"
+        print_incorrect_guesses
         puts "Codeword:"
         puts   "_ _ _ _ _ _ _ _ _ _"
     end
