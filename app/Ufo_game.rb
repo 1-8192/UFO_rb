@@ -16,6 +16,9 @@ class Ufo_game
     end
 
     def initialize_secret_word_display
+        @secret_word.length.times do |i|
+            @secret_word_display.push("_ ")
+        end
     end
 
     def print_pic 
@@ -36,7 +39,7 @@ class Ufo_game
         puts "Incorrect Guesses:"
         print_incorrect_guesses
         puts "Codeword:"
-        puts @TESTWORD
+        print @secret_word_display
     end
 
     def check_guess_valid?(input)
@@ -70,6 +73,7 @@ class Ufo_game
     end
 
     def play
+        initialize_secret_word_display
         welcome 
         print_pic
         print_status
