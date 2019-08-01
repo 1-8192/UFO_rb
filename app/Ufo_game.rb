@@ -17,7 +17,7 @@ class Ufo_game
 
     def initialize_secret_word_display
         @secret_word.length.times do |i|
-            @secret_word_display.push("_ ")
+            @secret_word_display.push("_")
         end
     end
 
@@ -51,10 +51,16 @@ class Ufo_game
     end
 
     def check_guess(input)
+        bool = false
         @secret_word.length.times do |i|
             if @secret_word[i].upcase == input.upcase 
-                @secret_word[i] = input.upcase
+                @secret_word_display[i] = input.upcase
+                bool = true 
             end 
+        end
+
+        if bool == false 
+            @incorrect_guesses.push(input)
         end
     end
 
