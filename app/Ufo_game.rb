@@ -6,12 +6,16 @@ class Ufo_game
         @guesses_remaining = 6
         @incorrect_guesses = []
         @correct_guesses = []
-        @secret_word = "testword"
+        @secret_word_display= []
+        @secret_word = "TESTWORD"
     end
 
     def welcome
         puts "UFO: The Game"
         puts "instructions: save us from alien abduction by guessing letters in the codeword."
+    end
+
+    def initialize_secret_word_display
     end
 
     def print_pic 
@@ -32,10 +36,10 @@ class Ufo_game
         puts "Incorrect Guesses:"
         print_incorrect_guesses
         puts "Codeword:"
-        puts   "_ _ _ _ _ _ _ _ _ _"
+        puts @TESTWORD
     end
 
-    def check_guess(input)
+    def check_guess_valid?(input)
         if input =~ /[[:alpha:]]/ && input.length == 1
             return true 
         else  
@@ -43,15 +47,25 @@ class Ufo_game
         end
     end
 
+    def check_guess(input)
+        @secret_word.length.times do |i|
+            if @secret_word[i].upcase == input.upcase 
+                @secret_word[i] = input.upcase
+            end 
+        end
+    end
+
     def turn 
         while @guesses_remaining != 0
             puts "please enter your guess:"
             current_guess = gets.chomp
-            if !check_guess(current_guess)
+            if !check_guess_valid?(current_guess)
                 puts "I cannot understand your input. Please guess a single letter."
             else  
-                puts "huuray"
+                check_guess(current_guess)
+                @guesses_remaining -= 1
             end
+            print_status
         end
     end
 
