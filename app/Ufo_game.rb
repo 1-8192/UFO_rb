@@ -5,7 +5,6 @@ class Ufo_game
     def initialize
         @guesses_remaining = 6
         @incorrect_guesses = []
-        @correct_guesses = []
         @secret_word_display= []
         @secret_word = ""
     end
@@ -100,6 +99,8 @@ class Ufo_game
         continue = "Y"
 
         while continue == "Y"
+            @guesses_remaining = 6
+            @incorrect_guesses = []
             initialize_secret_word
             initialize_secret_word_display
             welcome 
