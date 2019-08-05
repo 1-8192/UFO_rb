@@ -70,7 +70,7 @@ class Ufo_game
 
         if bool == false 
             @incorrect_guesses.push(input.upcase)
-            
+            @guesses_remaining -= 1
         end
     end
 
@@ -81,7 +81,6 @@ class Ufo_game
                 puts "I cannot understand your input. Please guess a single letter."
             else  
                 check_guess(current_guess)
-                @guesses_remaining -= 1
             end
             print_pic
             print_status
@@ -92,8 +91,15 @@ class Ufo_game
         welcome 
         print_pic
         print_status
-        while @guesses_remaining != 0 
+        while @guesses_remaining != 0 && @secret_word != @secret_word_display.join("")
             turn
+        end
+
+        if @secret_word == @secret_word_display.join("")
+            print "Correct! You saved the person and earned a medal of honor!
+            The codeword is:" + @secret_word
+        else  
+            print "goodbye"
         end
     end
 
