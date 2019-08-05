@@ -7,7 +7,7 @@ class Ufo_game
         @incorrect_guesses = []
         @correct_guesses = []
         @secret_word_display= []
-        @secret_word = "TESTWORD"
+        @secret_word = ""
     end
 
     def welcome
@@ -15,7 +15,16 @@ class Ufo_game
         puts "instructions: save us from alien abduction by guessing letters in the codeword."
     end
 
+    def initialize_secret_word 
+        chosen_word = nil
+        File.foreach('./lib/nouns.txt').each_with_index do |word, number|
+        chosen_word = word if rand < 1.0/(number+1)
+        end
+        @secret_word = chosen_word
+    end
+
     def initialize_secret_word_display
+        @secret_word_display = []
         @secret_word.length.times do |i|
             @secret_word_display.push("_")
         end
@@ -90,6 +99,7 @@ class Ufo_game
         continue = "Y"
 
         while continue == "Y"
+            initialize_secret_word
             initialize_secret_word_display
             welcome 
             print_pic
@@ -110,7 +120,7 @@ class Ufo_game
             print "Would you like to play again (Y/N)?"
             continue = gets.chomp.upcase 
         end
-        
+
     end
 
 end
