@@ -87,6 +87,9 @@ class Ufo_game
     end
 
     def play
+        continue = "Y"
+
+        while continue == "Y"
             initialize_secret_word_display
             welcome 
             print_pic
@@ -98,13 +101,16 @@ class Ufo_game
             if @secret_word == @secret_word_display.join("")
                 print "Correct! You saved the person and earned a medal of honor!
                 The codeword is:" + @secret_word
+                puts ""
             else  
                 print "No! They got yoouuu!!!"
+                puts ""
             end
 
             print "Would you like to play again (Y/N)?"
-            continue = gets.chomp
-            continue = continue.upcase
+            continue = gets.chomp.upcase 
         end
+        
+    end
 
 end
