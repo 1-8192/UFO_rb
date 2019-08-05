@@ -16,6 +16,7 @@ class Ufo_game
     end
 
     def initialize_secret_word 
+        # https://stackoverflow.com/questions/11007111/ruby-whats-an-elegant-way-to-pick-a-random-line-from-a-text-file
         chosen_word = nil
         File.foreach('./lib/nouns.txt').each_with_index do |word, number|
         chosen_word = word if rand < 1.0/(number+1)
