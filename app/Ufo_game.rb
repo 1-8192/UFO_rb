@@ -28,7 +28,7 @@ class Ufo_game
     def print_incorrect_guesses
         if @incorrect_guesses != [] 
             @incorrect_guesses.each do |letter|
-                puts letter + " "
+                print letter + " "
             end
         else  
             puts "NONE"
@@ -38,8 +38,11 @@ class Ufo_game
     def print_status
         puts "Incorrect Guesses:"
         print_incorrect_guesses
+        puts ""
         puts "Codeword:"
+        puts ""
         print_secret_word_display
+        puts ""
     end
 
     def print_secret_word_display
@@ -66,7 +69,7 @@ class Ufo_game
         end
 
         if bool == false 
-            @incorrect_guesses.push(input)
+            @incorrect_guesses.push(input.upcase)
             
         end
     end
