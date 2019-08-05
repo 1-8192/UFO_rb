@@ -61,6 +61,7 @@ class Ufo_game
 
         if bool == false 
             @incorrect_guesses.push(input)
+            
         end
     end
 
@@ -74,8 +75,10 @@ class Ufo_game
                 check_guess(current_guess)
                 @guesses_remaining -= 1
             end
+            print_pic
             print_status
         end
+
     end
 
     def play
