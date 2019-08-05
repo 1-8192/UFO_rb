@@ -80,8 +80,10 @@ class Ufo_game
         if bool == false 
             @incorrect_guesses.push(input.upcase)
             @guesses_remaining -= 1
+            system 'clear'
             puts "Incorrect! The tractor beam pulls the person in further."
         else  
+            system 'clear'
             puts "Correct! You're closer to cracking the codeword."
         end
     end
