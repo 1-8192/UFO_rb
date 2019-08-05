@@ -39,7 +39,13 @@ class Ufo_game
         puts "Incorrect Guesses:"
         print_incorrect_guesses
         puts "Codeword:"
-        print @secret_word_display
+        print_secret_word_display
+    end
+
+    def print_secret_word_display
+        @secret_word_display.each do |letter|
+            print letter + " "
+        end 
     end
 
     def check_guess_valid?(input)
@@ -66,7 +72,6 @@ class Ufo_game
     end
 
     def turn 
-        while @guesses_remaining != 0
             puts "please enter your guess:"
             current_guess = gets.chomp
             if !check_guess_valid?(current_guess)
@@ -77,8 +82,6 @@ class Ufo_game
             end
             print_pic
             print_status
-        end
-
     end
 
     def play
@@ -86,7 +89,9 @@ class Ufo_game
         welcome 
         print_pic
         print_status
-        turn
+        while @guesses_remaining != 0 
+            turn
+        end
     end
 
 end
