@@ -5,6 +5,7 @@ class Ufo_game
     def initialize
         @guesses_remaining = 6
         @incorrect_guesses = []
+        @correct_guesses = []
         @secret_word_display= []
         @secret_word = ""
     end
@@ -73,6 +74,9 @@ class Ufo_game
         @secret_word.length.times do |i|
             if @secret_word[i].upcase == input.upcase 
                 @secret_word_display[i] = input.upcase
+                if !@correct_guesses.include?(input.upcase)
+                    @correct_guesses.push(input.upcase)
+                end 
                 bool = true 
             end 
         end
@@ -87,6 +91,7 @@ class Ufo_game
             puts "Correct! You're closer to cracking the codeword."
         end
     end
+
 
     def turn 
             puts "please enter your guess:"
