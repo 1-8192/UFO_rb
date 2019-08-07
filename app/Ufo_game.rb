@@ -62,7 +62,7 @@ class Ufo_game
     end
 
     def check_guess_valid?(input)
-        if input =~ /[[:alpha:]]/ && input.length == 1
+        if input =~ /[[:alpha:]]/ && input.length == 1 && !@incorrect_guesses.include?(input.upcase)
             return true 
         else  
             return false
@@ -71,18 +71,19 @@ class Ufo_game
 
     def check_guess(input)
         bool = false
+        letter = input.upcase
         @secret_word.length.times do |i|
-            if @secret_word[i].upcase == input.upcase 
-                @secret_word_display[i] = input.upcase
-                if !@correct_guesses.include?(input.upcase)
-                    @correct_guesses.push(input.upcase)
+            if @secret_word[i].upcase == letter 
+                @secret_word_display[i] = letter
+                if !@correct_guesses.include?(letter)
+                    @correct_guesses.push(letter)
                 end 
                 bool = true 
             end 
         end
 
         if bool == false 
-            @incorrect_guesses.push(input.upcase)
+            @incorrect_guesses.push(letter)
             @guesses_remaining -= 1
             system 'clear'
             puts "Incorrect! The tractor beam pulls the person in further."
@@ -92,12 +93,16 @@ class Ufo_game
         end
     end
 
+    def reveal_word 
+        puts "By the by, the secret word was " + @secret_word
+    end
+
 
     def turn 
             puts "please enter your guess:"
             current_guess = gets.chomp
             if !check_guess_valid?(current_guess)
-                puts "I cannot understand your input. Please guess a single letter."
+                puts "I cannot understand your input. Or maybe you have used that letter before. Please guess a single letter."
             else  
                 check_guess(current_guess)
             end
@@ -127,6 +132,7 @@ class Ufo_game
             else  
                 print "No! They got yoouuu!!!"
                 puts ""
+                reveal_word
             end
 
             print "Would you like to play again (Y/N)?"
